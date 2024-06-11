@@ -1,0 +1,129 @@
+adb shell ip addr show wlan0　　　　　查看网络IP地址
+
+adb get-serialno  获取设备id
+
+
+开启/关闭坐标
+adb shell settings put system pointer_location 1
+
+最近任务
+shell input keyevent KEYCODE_APP_SWITCH
+
+授权
+adb shell pm grant com.Riy.Riy android.permission.WRITE_SECURE_SETTINGS
+
+adb shell pm grant org.autojs.autojspro android.permission.WRITE_SECURE_SETTINGS
+
+开发者 开启/关闭
+adb shell settings put global development_settings_enabled 0
+settings put global development_settings_enabled 1
+
+
+启动工具
+shell am start -n com.deBug.bug/com.stardust.autojs.inrt.SplashActivity
+
+结束
+shell am force-stop com.deBug.bug
+
+adb shell ps|findstr "str"   查看指定进程.
+
+设置字体大小   ( 0.8  -2)
+adb shell settings put system font_scale 0.8   
+
+打开设置
+adb shell am start com.android.settings/com.android.settings.Settings
+
+打开WiFi设置界面：
+adb shell am start -a android.intent.action.MAIN -n com.android.settings/.wifi.WifiSettings
+
+
+查看手机架构:
+adb shell getprop ro.product.cpu.abi
+
+关闭\打开自动旋转：
+adb shell settings put system accelerometer_rotation 0\1
+
+获取手机电量 :
+adb shell cat /sys/class/power_supply/battery/capacity
+
+
+添加某个应用到电池优化白名单
+adb shell dumpsys deviceidle whitelist  ( +  - )   [pack(包名)]
+
+(查看手机里面开启的白名单)
+adb shell dumpsys deviceidle whitelist  |findstr user  
+
+开启app 权限
+adb shell appops set (包名) SYSTEM_ALERT_WINDOW allow
+
+/*
+WRITE_SETTINGS   更改系统设置
+SYSTEM_ALERT_WINDOW  悬浮窗权限
+FOREGROUND_SERVICE 允许使用前台服务
+RECEIVE BOOT_COMPLETED    允许应用在系统完成引导后立即自动启动。并允许应用始
+REQUEST_COMPANION_RUN_IN_BACKGROUND  此应用可在后台运行
+WRITE _EXTERNAL_STORAGE   允许应用写入共享存储空间  
+*/
+
+
+
+查看进程列表
+adb shell ps |findstr "com"
+
+查看进程pid
+adb shell pidof com.example.script1678372923284:script
+
+改变手机电量：
+adb shell dumpsys battery set level 58
+
+
+查询指定进程pid
+adb shell pidof com.example.script1678372923284:script
+
+
+查看包名
+adb shell dumpsys window windows | findstr mFocusedApp
+adb shell dumpsys activity top |findstr ACTIVITY
+adb shell dumpsys window windows | findstr "Current"
+
+ 查看手机上应用包名 : 
+adb shell pm list packages -3
+
+无线连接
+
+adb tcpip 5555  开启端口  
+
+adb shell ifconfig wlan0  (获取ip地址)
+
+adb connect ip:5555  连接
+
+adb disconnect 192.168.1.16:5555  关闭连接
+
+截图 
+adb shell screencap -p /sdcard/1.png
+复制到本地电脑   
+adb pull /sdcard/1.png  D:\Desktop\Brain\
+
+#安装卸载app
+adb install 路径/xx.apk
+adb uninstall 包名
+
+清除应用数据与缓存: 
+adb shell pm clear cn.com.test.mobile
+
+启动应用: 
+adb shell am start -n fun.kitsunebi.kitsunebi4android/.ui.endpoint.EndpointListActivity   启动代理
+
+adb shell am start -n com.netease.mhxyhtb/com.netease.mhxyhtb.Launcher  梦幻
+
+
+adb shell am start -n com.wemade.mirmglobal/com.epicgames.ue4.GameActivity
+
+永不休眠：adb shell settings put system screen_off_timeout 2147483647
+
+获取屏幕分辨率：  adb shell wm size
+
+获取屏幕密度：adb shell wm density
+
+代理:      un.kitsunebi.kitsunebi4android/.ui.endpoint.EndpointListActivity
+传奇4:    com.wemade.mirmglobal/com.epicgames.ue4.GameActivity
